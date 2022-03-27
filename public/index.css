@@ -8,20 +8,37 @@ body {
 
 header {
   position: absolute;
-  top: 10px;
+  top: 20px;
   width: 100vw;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
-button {
+.num-box {
+  margin-left: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.num-gui {
+  width: 70px;
+  height: 70px;
+  background-color: rgb(128, 128, 128, 0.25);
+  color: rgb(0, 0, 0, 0.7);
+  font-weight: 900;
   padding: 5px;
-  border-radius: 5px;
-  background-color: blue;
-  color: antiquewhite;
+  border: 5px transparent solid;
 }
 
-button:hover {
-  cursor: pointer;
+.current {
+  border: solid gold 5px;
+  border-radius: 3px;
+}
+
+.equip {
+  width: 45px;
+  height: 45px;
+  background-color: black;
+  margin-left: 15px;
 }

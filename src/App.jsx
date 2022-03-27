@@ -68,28 +68,106 @@ export default function App() {
 
   animateBox();
 
+  window.addEventListener('keydown', (event) => {
+    if (event.key === '1') {
+      scene.background = new THREE.Color('purple');
+      const slots = document.querySelectorAll('.num-gui');
+      console.log('slots', slots);
+      slots.forEach((slot) => slot.classList.remove('current'));
+      const equipSlot = document.querySelector('.key-1');
+      equipSlot.classList.add('current');
+      const equipSlotInner = document.querySelector('.icon-1');
+      equipSlotInner.style.background = 'purple';
+    } else if (event.key === '2') {
+      scene.background = new THREE.Color('violet');
+      const slots = document.querySelectorAll('.num-gui');
+      slots.forEach((slot) => slot.classList.remove('current'));
+      const equipSlot = document.querySelector('.key-2');
+      equipSlot.classList.add('current');
+      const equipSlotInner = document.querySelector('.icon-2');
+      equipSlotInner.style.background = 'violet';
+    } else if (event.key === '3') {
+      scene.background = new THREE.Color('aqua');
+      const slots = document.querySelectorAll('.num-gui');
+      slots.forEach((slot) => slot.classList.remove('current'));
+      const equipSlot = document.querySelector('.key-3');
+      equipSlot.classList.add('current');
+      const equipSlotInner = document.querySelector('.icon-3');
+      equipSlotInner.style.background = 'aqua';
+    } else if (event.key === '4') {
+      scene.background = new THREE.Color('orange');
+      const slots = document.querySelectorAll('.num-gui');
+      slots.forEach((slot) => slot.classList.remove('current'));
+      const equipSlot = document.querySelector('.key-4');
+      equipSlot.classList.add('current');
+      const equipSlotInner = document.querySelector('.icon-4');
+      equipSlotInner.style.background = 'orange';
+    } else if (event.key === '5') {
+      scene.background = new THREE.Color('grey');
+      const slots = document.querySelectorAll('.num-gui');
+      slots.forEach((slot) => slot.classList.remove('current'));
+      const equipSlot = document.querySelector('.key-5');
+      equipSlot.classList.add('current');
+      const equipSlotInner = document.querySelector('.icon-5');
+      equipSlotInner.style.background = 'grey';
+    } else if (event.key === '6') {
+      scene.background = new THREE.Color('lime');
+      const slots = document.querySelectorAll('.num-gui');
+      slots.forEach((slot) => slot.classList.remove('current'));
+      const equipSlot = document.querySelector('.key-6');
+      equipSlot.classList.add('current');
+      const equipSlotInner = document.querySelector('.icon-6');
+      equipSlotInner.style.background = 'lime';
+    } else if (event.key === '7') {
+      scene.background = new THREE.Color('hotpink');
+      const slots = document.querySelectorAll('.num-gui');
+      slots.forEach((slot) => slot.classList.remove('current'));
+      const equipSlot = document.querySelector('.key-7');
+      equipSlot.classList.add('current');
+      const equipSlotInner = document.querySelector('.icon-7');
+      equipSlotInner.style.background = 'hotpink';
+    } else if (event.key === '8') {
+      const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+      scene.background = new THREE.Color('#' + randomColor);
+      const slots = document.querySelectorAll('.num-gui');
+      slots.forEach((slot) => slot.classList.remove('current'));
+      const equipSlot = document.querySelector('.key-8');
+      equipSlot.classList.add('current');
+      const equipSlotInner = document.querySelector('.icon-8');
+      equipSlotInner.style.background = '#' + randomColor;
+    }
+  });
+
   return (
     <>
       <header>
-        <button onClick={() => (scene.background = new THREE.Color('red'))}>
-          Red
-        </button>
-        <button onClick={() => (scene.background = new THREE.Color('green'))}>
-          Green
-        </button>
-        <button onClick={() => (scene.background = new THREE.Color('blue'))}>
-          Blue
-        </button>
-        <button
-          onClick={() => {
-            const randomColor = Math.floor(Math.random() * 16777215).toString(
-              16
-            );
-            scene.background = new THREE.Color('#' + randomColor);
-          }}
-        >
-          Random
-        </button>
+        <div className="num-box">
+          <div className="num-gui key-1">
+            1<div className="equip icon-1"></div>
+          </div>
+          <div className="num-gui key-2">
+            2<div className="equip icon-2"></div>
+          </div>
+          <div className="num-gui key-3">
+            3<div className="equip icon-3"></div>
+          </div>
+          <div className="num-gui key-4">
+            4<div className="equip icon-4"></div>
+          </div>
+          <div className="num-gui key-5">
+            5<div className="equip icon-5"></div>
+          </div>
+          <div className="num-gui key-6">
+            6<div className="equip icon-6"></div>
+          </div>
+          <div className="num-gui key-7">
+            7<div className="equip icon-7"></div>
+          </div>
+          <div className="num-gui key-8">
+            8<div className="equip icon-8"></div>
+          </div>
+        </div>
+        <div></div>
       </header>
     </>
   );
