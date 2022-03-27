@@ -45,6 +45,8 @@ export default function App() {
     renderer.setPixelRatio(window.devicePixelRatio);
   });
 
+  scene.background = new THREE.Color('red');
+
   let x = 0;
   let y = 0;
   const animateBox = () => {
@@ -66,5 +68,29 @@ export default function App() {
 
   animateBox();
 
-  return <></>;
+  return (
+    <>
+      <header>
+        <button onClick={() => (scene.background = new THREE.Color('red'))}>
+          Red
+        </button>
+        <button onClick={() => (scene.background = new THREE.Color('green'))}>
+          Green
+        </button>
+        <button onClick={() => (scene.background = new THREE.Color('blue'))}>
+          Blue
+        </button>
+        <button
+          onClick={() => {
+            const randomColor = Math.floor(Math.random() * 16777215).toString(
+              16
+            );
+            scene.background = new THREE.Color('#' + randomColor);
+          }}
+        >
+          Random
+        </button>
+      </header>
+    </>
+  );
 }
