@@ -16,28 +16,27 @@ export default function App() {
     0.1,
     1000
   );
-  camera.position.x = 9;
-  camera.position.y = 9;
-  camera.position.z = 8;
+  camera.position.x = 3;
+  camera.position.y = 3;
+  camera.position.z = -3;
   const orbitControls = new OrbitControls(camera, canvas);
   orbitControls.enablePan = false;
 
   const aBox = new THREE.BoxGeometry(1, 1, 1);
-  const mBox = new THREE.MeshStandardMaterial({ color: 'green' });
+  const mBox = new THREE.MeshStandardMaterial({ color: 'white' });
   const meshBox = new THREE.Mesh(aBox, mBox);
   scene.add(meshBox);
-  const axesHelper = new THREE.AxesHelper();
-  scene.add(axesHelper);
 
-  const directionalLight = new THREE.DirectionalLight('white', 1.0);
-  directionalLight.position.set(7, 7, 7);
+  const directionalLight = new THREE.DirectionalLight('lime', 0.8);
+  directionalLight.position.set(0, 0, 7);
   scene.add(directionalLight);
 
-  const dirLightHelper = new THREE.DirectionalLightHelper(directionalLight);
-  scene.add(dirLightHelper);
-
-  const ambientLight = new THREE.AmbientLight('white', 0.1);
+  const ambientLight = new THREE.AmbientLight('magenta', 0.01);
   scene.add(ambientLight);
+
+  const ambientLightD = new THREE.DirectionalLight('orange', 0.2);
+  ambientLightD.position.set(0, 10, -3);
+  scene.add(ambientLightD);
 
   window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
@@ -46,9 +45,22 @@ export default function App() {
     renderer.setPixelRatio(window.devicePixelRatio);
   });
 
+  let x = 0;
+  let y = 0;
   const animateBox = () => {
     renderer.render(scene, camera);
-    meshBox.rotation.y += 0.01;
+    // directionalLight.target(0, 0, 0);
+    x += 0.03;
+    y += 0.01;
+    ambientLight.intensity = Math.abs(Math.sin(y));
+    directionalLight.position.x = 7 * Math.sin(x);
+    directionalLight.position.z = 7 * Math.cos(x);
+    if (x === 10) {
+      x = 0;
+    }
+    meshBox.rotation.y = Math.sin(x);
+    meshBox.rotation.x = Math.cos(x);
+    // meshBox.rotation.z += Math.cos(x);
     requestAnimationFrame(animateBox);
   };
 
