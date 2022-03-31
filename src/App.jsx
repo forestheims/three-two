@@ -45,96 +45,137 @@ export default function App() {
     renderer.setPixelRatio(window.devicePixelRatio);
   });
 
-  scene.background = new THREE.Color('red');
-
+  scene.background = new THREE.Color('slategrey');
   let x = 0;
   let y = 0;
-  const animateBox = () => {
+
+  const count = () =>
+    setTimeout(() => {
+      if (x === 10) x = 0;
+      if (y === 10) y = 0;
+      x += 0.03;
+      y += 0.01;
+      count();
+    }, 15);
+  count();
+
+  const orbitLight = () => {
     renderer.render(scene, camera);
-    // directionalLight.target(0, 0, 0);
-    x += 0.03;
-    y += 0.01;
-    ambientLight.intensity = Math.abs(Math.sin(y));
+    meshBox.rotation.x = 0;
+    meshBox.rotation.y = 0;
+    meshBox.rotation.z = 0;
     directionalLight.position.x = 7 * Math.sin(x);
+    directionalLight.position.y = 1.01 - 2 * Math.sin(x);
     directionalLight.position.z = 7 * Math.cos(x);
-    if (x === 10) {
-      x = 0;
-    }
-    meshBox.rotation.y = Math.sin(x);
-    meshBox.rotation.x = Math.cos(x);
-    // meshBox.rotation.z += Math.cos(x);
-    requestAnimationFrame(animateBox);
+    requestAnimationFrame(orbitLight);
+  };
+  orbitLight();
+
+  const oneBox = () => {
+    meshBox.rotation.x = 0;
+    meshBox.rotation.y = 0;
+    meshBox.rotation.z = 0;
+    requestAnimationFrame(oneBox);
   };
 
-  animateBox();
+  const twoBox = () => {
+    meshBox.rotation.x = Math.cos(x);
+    meshBox.rotation.y = Math.sin(x);
+    meshBox.rotation.z = Math.cos(x);
+    requestAnimationFrame(twoBox);
+  };
+
+  const threeBox = () => {
+    meshBox.rotation.x = Math.cos(x);
+    meshBox.rotation.y = Math.tan(x);
+    meshBox.rotation.z = Math.cos(x);
+    requestAnimationFrame(threeBox);
+  };
+
+  const fourBox = () => {
+    meshBox.rotation.x = Math.tan(x);
+    meshBox.rotation.y = Math.tan(x);
+    meshBox.rotation.z = Math.tan(x);
+    requestAnimationFrame(fourBox);
+  };
+
+  const fiveBox = () => {
+    meshBox.rotation.x = 1.5 * Math.cos(x);
+    meshBox.rotation.y = 5 - 3 * Math.sin(x);
+    meshBox.rotation.z = 0;
+    requestAnimationFrame(fiveBox);
+  };
+
+  const sixBox = () => {
+    meshBox.rotation.x = 0;
+    meshBox.rotation.y = 2 * Math.sin(x);
+    meshBox.rotation.z = 0;
+    requestAnimationFrame(sixBox);
+  };
+
+  const sevenBox = () => {
+    meshBox.rotation.x = 10 * Math.cos(x);
+    meshBox.rotation.y = 0;
+    meshBox.rotation.z = 0;
+    requestAnimationFrame(sevenBox);
+  };
+
+  const eightBox = () => {
+    meshBox.rotation.x = Math.sin(y);
+    meshBox.rotation.y = Math.sin(x);
+    meshBox.rotation.z = 0;
+    requestAnimationFrame(eightBox);
+  };
 
   window.addEventListener('keydown', (event) => {
     if (event.key === '1') {
-      scene.background = new THREE.Color('purple');
+      oneBox();
       const slots = document.querySelectorAll('.num-gui');
-      console.log('slots', slots);
       slots.forEach((slot) => slot.classList.remove('current'));
       const equipSlot = document.querySelector('.key-1');
       equipSlot.classList.add('current');
-      const equipSlotInner = document.querySelector('.icon-1');
-      equipSlotInner.style.background = 'purple';
     } else if (event.key === '2') {
-      scene.background = new THREE.Color('violet');
+      twoBox();
       const slots = document.querySelectorAll('.num-gui');
       slots.forEach((slot) => slot.classList.remove('current'));
       const equipSlot = document.querySelector('.key-2');
       equipSlot.classList.add('current');
-      const equipSlotInner = document.querySelector('.icon-2');
-      equipSlotInner.style.background = 'violet';
     } else if (event.key === '3') {
-      scene.background = new THREE.Color('aqua');
+      threeBox();
       const slots = document.querySelectorAll('.num-gui');
       slots.forEach((slot) => slot.classList.remove('current'));
       const equipSlot = document.querySelector('.key-3');
       equipSlot.classList.add('current');
-      const equipSlotInner = document.querySelector('.icon-3');
-      equipSlotInner.style.background = 'aqua';
     } else if (event.key === '4') {
-      scene.background = new THREE.Color('orange');
+      fourBox();
       const slots = document.querySelectorAll('.num-gui');
       slots.forEach((slot) => slot.classList.remove('current'));
       const equipSlot = document.querySelector('.key-4');
       equipSlot.classList.add('current');
-      const equipSlotInner = document.querySelector('.icon-4');
-      equipSlotInner.style.background = 'orange';
     } else if (event.key === '5') {
-      scene.background = new THREE.Color('grey');
+      fiveBox();
       const slots = document.querySelectorAll('.num-gui');
       slots.forEach((slot) => slot.classList.remove('current'));
       const equipSlot = document.querySelector('.key-5');
       equipSlot.classList.add('current');
-      const equipSlotInner = document.querySelector('.icon-5');
-      equipSlotInner.style.background = 'grey';
     } else if (event.key === '6') {
-      scene.background = new THREE.Color('lime');
+      sixBox();
       const slots = document.querySelectorAll('.num-gui');
       slots.forEach((slot) => slot.classList.remove('current'));
       const equipSlot = document.querySelector('.key-6');
       equipSlot.classList.add('current');
-      const equipSlotInner = document.querySelector('.icon-6');
-      equipSlotInner.style.background = 'lime';
     } else if (event.key === '7') {
-      scene.background = new THREE.Color('hotpink');
+      sevenBox();
       const slots = document.querySelectorAll('.num-gui');
       slots.forEach((slot) => slot.classList.remove('current'));
       const equipSlot = document.querySelector('.key-7');
       equipSlot.classList.add('current');
-      const equipSlotInner = document.querySelector('.icon-7');
-      equipSlotInner.style.background = 'hotpink';
     } else if (event.key === '8') {
-      const randomColor = Math.floor(Math.random() * 16777215).toString(16);
-      scene.background = new THREE.Color('#' + randomColor);
+      eightBox();
       const slots = document.querySelectorAll('.num-gui');
       slots.forEach((slot) => slot.classList.remove('current'));
       const equipSlot = document.querySelector('.key-8');
       equipSlot.classList.add('current');
-      const equipSlotInner = document.querySelector('.icon-8');
-      equipSlotInner.style.background = '#' + randomColor;
     }
   });
 
